@@ -39,7 +39,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-exports.sendNotificationToTopic = functions.firestore.document('puppies/{uid}').onWrite(async (event) => {
+exports.sendNotificationToTopic = functions.firestore.document('capt/{uid}').onWrite(async (event) => {
     //let docID = event.after.id;
     let title = event.after.get('title');
     let content = event.after.get('content');
