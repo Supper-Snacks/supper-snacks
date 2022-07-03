@@ -94,7 +94,7 @@ const AuthScreen = () => {
         >
             <View style={styles.container}>
                 <Text style={[styles.welcomeText, styles.boldText]}>
-                    {`Welcome back to\nSupper Snacks!`}
+                    {`Turn Your Cravings\nInto Reality!`}
                 </Text>
                 <Text style={[styles.authText, styles.boldText]}>
                     {isLogin ? 'You are logging in!' : 'You are signing up!'}

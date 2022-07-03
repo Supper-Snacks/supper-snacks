@@ -42,13 +42,13 @@ const AppNavigator = () => {
         <Stack.Navigator initialRouteName="Main">
             <Stack.Screen
                 name="Main"
-                options={{ title: 'Orbital 22 React Native Workshop' }}
+                options={{ title: 'Main Page' }}
                 component={MainScreen}
             />
 
             <Stack.Screen
                 name="Auth"
-                options={{ headerTitle: 'Todo List' }}
+                options={{ headerTitle: 'Supper Snacks' }}
                 component={AuthScreen}
             />
 
