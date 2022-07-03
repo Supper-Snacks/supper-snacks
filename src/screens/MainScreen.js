@@ -11,7 +11,6 @@ const MainScreen = ({ navigation }) => {
             >
                 <Text style={styles.text}>Supper Snacks</Text>
             </Pressable>
-
         </View>
     );
 };

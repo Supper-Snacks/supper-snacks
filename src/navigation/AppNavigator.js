@@ -8,14 +8,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { auth } from '../firebase';
 import {
     MainScreen,
-    Ex1Incorrect,
-    Ex1Solution,
-    Ex2Solution,
-    Ex1SolutionRedux,
-    CountRedux,
     AuthScreen,
     LoginScreen,
-    UsersScreen,
     HomeScreen,
 } from '../screens';
 
@@ -51,41 +45,13 @@ const AppNavigator = () => {
                 options={{ title: 'Orbital 22 React Native Workshop' }}
                 component={MainScreen}
             />
-            <Stack.Screen
-                name="Ex1Incorrect"
-                options={{ title: 'Exercise 1 (Incorrect)' }}
-                component={Ex1Incorrect}
-            />
-            <Stack.Screen
-                name="Ex1Solution"
-                options={{ title: 'Exercise 1 (Solution)' }}
-                component={Ex1Solution}
-            />
-            <Stack.Screen
-                name="Ex1SolutionRedux"
-                options={{ title: 'Exercise 1 (Solution Redux)' }}
-                component={Ex1SolutionRedux}
-            />
-            <Stack.Screen
-                name="Ex2Solution"
-                options={{ title: 'Exercise 2 (Solution)' }}
-                component={Ex2Solution}
-            />
-            <Stack.Screen
-                name="CountRedux"
-                options={{ title: 'Count with specific input' }}
-                component={CountRedux}
-            />
+
             <Stack.Screen
                 name="Auth"
                 options={{ headerTitle: 'Todo List' }}
                 component={AuthScreen}
             />
-            <Stack.Screen
-                name="Users"
-                options={{ headerShown: false }}
-                component={UsersScreen}
-            />
+
         </Stack.Navigator>
     );
 
