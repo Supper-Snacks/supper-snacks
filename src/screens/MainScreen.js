@@ -5,54 +5,13 @@ const MainScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Pressable
-                onPress={() => navigation.navigate('Ex1Incorrect')}
-                style={styles.button}
-                android_ripple={{ color: '#FFF' }}
-            >
-                <Text style={styles.text}>Exercise 1 (Incorrect)</Text>
-            </Pressable>
-            <Pressable
-                onPress={() => navigation.navigate('Ex1Solution')}
-                style={styles.button}
-                android_ripple={{ color: '#FFF' }}
-            >
-                <Text style={styles.text}>Exercise 1 (Solution)</Text>
-            </Pressable>
-            <Pressable
-                onPress={() => navigation.navigate('Ex1SolutionRedux')}
-                style={styles.button}
-                android_ripple={{ color: '#FFF' }}
-            >
-                <Text style={styles.text}>Exercise 1 (Solution Redux)</Text>
-            </Pressable>
-            <Pressable
-                style={styles.button}
-                onPress={() => navigation.navigate('Ex2Solution')}
-                android_ripple={{ color: '#FFF' }}
-            >
-                <Text style={styles.text}>Exercise 2 (Solution)</Text>
-            </Pressable>
-            <Pressable
-                style={styles.button}
-                onPress={() => navigation.navigate('CountRedux')}
-                android_ripple={{ color: '#FFF' }}
-            >
-                <Text style={styles.text}>Redux Count Example</Text>
-            </Pressable>
-            <Pressable
                 style={styles.button}
                 onPress={() => navigation.navigate('Auth')}
                 android_ripple={{ color: '#FFF' }}
             >
                 <Text style={styles.text}>Supper Snacks</Text>
             </Pressable>
-            <Pressable
-                style={styles.button}
-                onPress={() => navigation.navigate('Users')}
-                android_ripple={{ color: '#FFF' }}
-            >
-                <Text style={styles.text}>UsersScreen</Text>
-            </Pressable>
+
         </View>
     );
 };
