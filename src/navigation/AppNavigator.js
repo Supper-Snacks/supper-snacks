@@ -39,7 +39,7 @@ const AppNavigator = () => {
     }, []);
 
     const MainNavigator = () => (
-        <Stack.Navigator initialRouteName="Main">
+        <Stack.Navigator initialRouteName="Auth">
             <Stack.Screen
                 name="Main"
                 options={{ title: 'Main Page' }}

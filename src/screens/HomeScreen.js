@@ -25,7 +25,7 @@ const { width } = Dimensions.get('window');
 const HomeScreen = () => {
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
-
+/*
     useEffect(() => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
@@ -84,8 +84,7 @@ const HomeScreen = () => {
     const clearForm = () => {
         setTask('');
         Keyboard.dismiss();
-    };
-
+    }; */
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -94,6 +93,7 @@ const HomeScreen = () => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Text style={styles.headerText}>Your Orders 🍔</Text>
+                    <Text style={styles.headerText}>Choose Your Group</Text>
                     <View style={styles.listContainer}>
                         <FlatList
                             data={taskList}
@@ -107,6 +107,24 @@ const HomeScreen = () => {
                             style={styles.list}
                             showsVerticalScrollIndicator={false}
                         />
+                        <Pressable
+                            android_ripple={{ color: 'white' }}
+                            style={styles.button}
+                        >
+                            <Text style={styles.buttonText}>Halls</Text>
+                        </Pressable>
+                        <Pressable
+                            android_ripple={{ color: 'white' }}
+                            style={styles.button}
+                        >
+                            <Text style={styles.buttonText}>Residential Colleges</Text>
+                        </Pressable>
+                        <Pressable
+                            android_ripple={{ color: 'white' }}
+                            style={styles.button}
+                        >
+                            <Text style={styles.buttonText}>Others</Text>
+                        </Pressable>
                     </View>
                 </View>
                 <View style={styles.formContainer}>
@@ -118,11 +136,11 @@ const HomeScreen = () => {
                         style={styles.taskInput}
                     />
                     <Pressable
-                        onPress={onSubmitHandler}
+                        //onPress={onSubmitHandler}
                         android_ripple={{ color: 'white' }}
                         style={styles.button}
                     >
-                        <Text style={styles.buttonText}>Add</Text>
+                        <Text style={styles.buttonText}>Start Order</Text>
                     </Pressable>
                 </View>
             </SafeAreaView>
