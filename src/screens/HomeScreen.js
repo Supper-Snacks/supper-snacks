@@ -22,7 +22,7 @@ const THEME = '#407BFF';
 
 const { width } = Dimensions.get('window');
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
 /*
@@ -92,7 +92,6 @@ const HomeScreen = () => {
         >
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
-                    <Text style={styles.headerText}>Your Orders 🍔</Text>
                     <Text style={styles.headerText}>Choose Your Group</Text>
                     <View style={styles.listContainer}>
                         <FlatList
@@ -108,16 +107,24 @@ const HomeScreen = () => {
                             showsVerticalScrollIndicator={false}
                         />
                         <Pressable
-                            android_ripple={{ color: 'white' }}
                             style={styles.button}
+
+                            android_ripple={{ color: 'white' }}
                         >
                             <Text style={styles.buttonText}>Halls</Text>
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
+                            onPress={() => navigation.navigate('Group')}
                             style={styles.button}
                         >
                             <Text style={styles.buttonText}>Residential Colleges</Text>
+                        </Pressable>
+                        <Pressable
+                            android_ripple={{ color: 'white' }}
+                            style={styles.button}
+                        >
+                            <Text style={styles.buttonText}>Residences</Text>
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
@@ -193,7 +200,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: width * 0.22,
-        paddingVertical: 10,
+        paddingVertical: 20,
         paddingHorizontal: 6,
         backgroundColor: THEME,
         borderRadius: 5,

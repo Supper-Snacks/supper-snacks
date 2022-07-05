@@ -11,6 +11,7 @@ import {
     AuthScreen,
     LoginScreen,
     HomeScreen,
+    GroupLinkScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +52,11 @@ const AppNavigator = () => {
                 options={{ headerTitle: 'Supper Snacks' }}
                 component={AuthScreen}
             />
+            <Stack.Screen
+                name="Group"
+                options={{ title: 'Group Link Page' }}
+                component={GroupLinkScreen}
+            />            
 
         </Stack.Navigator>
     );
