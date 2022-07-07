@@ -108,13 +108,13 @@ const HomeScreen = ({ navigation }) => {
                         />
                         <Pressable
                             style={styles.button}
-                            onPress={() => navigation.navigate("Testing")}
                             android_ripple={{ color: 'white' }}
                         >
                             <Text style={styles.buttonText}>Halls</Text>
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
+                            onPress={() => navigation.navigate('Testing')}
                             style={styles.button}
                         >
                             <Text style={styles.buttonText}>Residential Colleges</Text>
