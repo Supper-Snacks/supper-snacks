@@ -10,6 +10,7 @@ import {
     AuthScreen,
     LoginScreen,
     HomeScreen,
+    TestingScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -45,7 +46,13 @@ const AppNavigator = () => {
                 options={{ headerTitle: 'Supper Snacks' }}
                 component={AuthScreen}
             />
-
+            /*
+            <Stack.Screen
+                name="Testing"
+                options={{ headerTitle: 'Testing Screen' }}
+                component={TestingScreen}
+            />
+            */
         </Stack.Navigator>
     );
 
@@ -71,6 +78,14 @@ const AppNavigator = () => {
                     headerRight: () => <LogoutIcon />,
                 }}
                 component={HomeScreen}
+            />
+            <TodoStack.Screen
+                name="Testing"
+                options={{
+                headerTitle: 'Testing',
+                headerRight: () => <LogoutIcon />,
+                }}
+                component={TestingScreen}
             />
         </TodoStack.Navigator>
     );

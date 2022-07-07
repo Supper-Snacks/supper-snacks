@@ -22,7 +22,7 @@ const THEME = '#407BFF';
 
 const { width } = Dimensions.get('window');
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
 /*
@@ -108,7 +108,7 @@ const HomeScreen = ({navigation}) => {
                         />
                         <Pressable
                             style={styles.button}
-
+                            onPress={() => navigation.navigate("Testing")}
                             android_ripple={{ color: 'white' }}
                         >
                             <Text style={styles.buttonText}>Halls</Text>
