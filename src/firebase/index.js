@@ -33,8 +33,6 @@ const firebaseConfig = {
 // https://firebase.google.com/docs/web/setup
 // https://docs.expo.dev/guides/using-firebase/
 const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
-messaging.getToken({vapidKey:"BDGGnJytH87x6d886c7RfRvftpPViuXWxHb4ev9rGP72YuvmvuXCJ7XxaPDsFo9_IX7JlTGSvByeifflY6DOpHM"});
 const auth = getAuth();
 const db = getFirestore(app);
 

@@ -7,11 +7,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { auth } from '../firebase';
 import {
-    MainScreen,
     AuthScreen,
     LoginScreen,
     HomeScreen,
-    GroupLinkScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -41,22 +39,12 @@ const AppNavigator = () => {
 
     const MainNavigator = () => (
         <Stack.Navigator initialRouteName="Auth">
-            <Stack.Screen
-                name="Main"
-                options={{ title: 'Main Page' }}
-                component={MainScreen}
-            />
 
             <Stack.Screen
                 name="Auth"
                 options={{ headerTitle: 'Supper Snacks' }}
                 component={AuthScreen}
             />
-            <Stack.Screen
-                name="Group"
-                options={{ title: 'Group Link Page' }}
-                component={GroupLinkScreen}
-            />            
 
         </Stack.Navigator>
     );
