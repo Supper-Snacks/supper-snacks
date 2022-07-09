@@ -14,7 +14,7 @@ import {
 import React, { useState, useEffect } from 'react';
 import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
 
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
 import { Task } from '../components';
 
 const INPUT_PLACEHOLDER = 'Enter your order and hit Add';
@@ -25,7 +25,7 @@ const { width } = Dimensions.get('window');
 const HomeScreen = ({ navigation }) => {
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
-/*
+    /*
     useEffect(() => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
@@ -85,6 +85,42 @@ const HomeScreen = ({ navigation }) => {
         setTask('');
         Keyboard.dismiss();
     }; */
+
+    const addHallUser = async () => {
+      const newHallUser = await addDoc(collection(db, "Halls"), {
+        content: task,
+      });
+
+      const firstUser = await addDoc(collection(db, "Halls", newHallUser.id, "messages"), {
+        content: "Welcome to Chat."
+      });
+
+      console.log(`Added to hall group: ${newHallUser.id}`)
+    };
+
+    const addRCUser = async () => {
+          const newRCUser = await addDoc(collection(db, "Residential Colleges"), {
+            content: task,
+          });
+
+          const firstUser = await addDoc(collection(db, "Residential Colleges", newRCUser.id, "messages"), {
+            content: "Welcome to Chat."
+          });
+
+          console.log(`Added to RC group: ${newRCUser.id}`)
+        };
+
+    const addRUser = async () => {
+          const newRUser = await addDoc(collection(db, "Residences"), {
+            content: task,
+          });
+
+          const firstUser = await addDoc(collection(db, "Residences", newRUser.id, "messages"), {
+            content: "Welcome to Chat."
+          });
+
+          console.log(`Added to Residences group: ${newRUser.id}`)
+        };
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -108,25 +144,28 @@ const HomeScreen = ({ navigation }) => {
                         />
                         <Pressable
                             style={styles.button}
+                            onPress={addHallUser}
                             android_ripple={{ color: 'white' }}
                         >
                             <Text style={styles.buttonText}>Halls</Text>
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
-                            onPress={() => navigation.navigate('Testing')}
+                            onPress={addRCUser}
                             style={styles.button}
                         >
                             <Text style={styles.buttonText}>Residential Colleges</Text>
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
+                            onPress={addRUser}
                             style={styles.button}
                         >
                             <Text style={styles.buttonText}>Residences</Text>
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
+                            onPress={() => navigation.navigate('Testing')}
                             style={styles.button}
                         >
                             <Text style={styles.buttonText}>Others</Text>

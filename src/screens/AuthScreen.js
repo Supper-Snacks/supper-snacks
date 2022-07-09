@@ -14,7 +14,7 @@ import {
 } from 'firebase/auth';
 
 import { AuthTextInput, AuthPressable } from '../components';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 
 const AuthScreen = () => {
     const [isLogin, setIsLogin] = useState(true);
