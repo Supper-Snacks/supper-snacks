@@ -13,8 +13,8 @@ import {
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
-
 import { auth, db } from '../firebase';
+import { getAuth } from "firebase/auth";
 import { Task } from '../components';
 
 const INPUT_PLACEHOLDER = 'Enter your order and hit Add';
@@ -85,15 +85,16 @@ const HomeScreen = ({ navigation }) => {
         setTask('');
         Keyboard.dismiss();
     }; */
-
+    const auth = getAuth();
+    const user = auth.currentUser;
     const addHallUser = async () => {
       const newHallUser = await addDoc(collection(db, "Halls"), {
-        content: task,
+        user: user.uid
       });
 
-      const firstUser = await addDoc(collection(db, "Halls", newHallUser.id, "messages"), {
+      /*const firstUser = await addDoc(collection(db, "Halls", newHallUser.id, "messages"), {
         content: "Welcome to Chat."
-      });
+      });*/
 
       console.log(`Added to hall group: ${newHallUser.id}`)
     };
@@ -173,13 +174,7 @@ const HomeScreen = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={styles.formContainer}>
-                    <TextInput
-                        onChangeText={setTask}
-                        value={task}
-                        selectionColor={THEME}
-                        placeholder={INPUT_PLACEHOLDER}
-                        style={styles.taskInput}
-                    />
+
                     <Pressable
                         //onPress={onSubmitHandler}
                         android_ripple={{ color: 'white' }}
