@@ -92,36 +92,33 @@ const HomeScreen = ({ navigation }) => {
         user: user.uid
       });
 
-      /*const firstUser = await addDoc(collection(db, "Halls", newHallUser.id, "messages"), {
-        content: "Welcome to Chat."
-      });*/
-
       console.log(`Added to hall group: ${newHallUser.id}`)
     };
 
     const addRCUser = async () => {
-          const newRCUser = await addDoc(collection(db, "Residential Colleges"), {
-            content: task,
-          });
+       const newRCUser = await addDoc(collection(db, "Residential Colleges"), {
+         user: user.uid
+       });
 
-          const firstUser = await addDoc(collection(db, "Residential Colleges", newRCUser.id, "messages"), {
-            content: "Welcome to Chat."
-          });
-
-          console.log(`Added to RC group: ${newRCUser.id}`)
-        };
+       console.log(`Added to RC group: ${newRCUser.id}`)
+    };
 
     const addRUser = async () => {
-          const newRUser = await addDoc(collection(db, "Residences"), {
-            content: task,
-          });
+      const newRUser = await addDoc(collection(db, "Residences"), {
+        user: user.uid
+      });
 
-          const firstUser = await addDoc(collection(db, "Residences", newRUser.id, "messages"), {
-            content: "Welcome to Chat."
-          });
+      console.log(`Added to Residences group: ${newRUser.id}`)
+    };
 
-          console.log(`Added to Residences group: ${newRUser.id}`)
-        };
+    const addOtherUser = async () => {
+      const newOtherUser = await addDoc(collection(db, "Others"), {
+        user: user.uid
+      });
+
+      console.log(`Added to Others group: ${newOtherUser.id}`)
+    };
+
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -166,7 +163,7 @@ const HomeScreen = ({ navigation }) => {
                         </Pressable>
                         <Pressable
                             android_ripple={{ color: 'white' }}
-                            onPress={() => navigation.navigate('Testing')}
+                            onPress={addOtherUser}
                             style={styles.button}
                         >
                             <Text style={styles.buttonText}>Others</Text>
@@ -178,6 +175,7 @@ const HomeScreen = ({ navigation }) => {
                     <Pressable
                         //onPress={onSubmitHandler}
                         android_ripple={{ color: 'white' }}
+                        onPress={() => navigation.navigate('Testing')}
                         style={styles.button}
                     >
                         <Text style={styles.buttonText}>Start Order</Text>
