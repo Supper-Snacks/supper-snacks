@@ -3,8 +3,8 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "webpackServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://fa-eex.weijieguok.supper-snacks.exp.direct",
+  "packagerNgrokUrl": "https://fa-eex.weijieguok.supper-snacks.exp.direct",
+  "ngrokPid": 26668,
   "packagerPid": null
 }

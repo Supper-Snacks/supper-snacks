@@ -30,7 +30,7 @@ function TestingScreen({ navigation }) {
                     </Text>
                     <AuthTextInput
 
-                        placeholder="Grab Vendor"
+                        placeholder="Grab Vendor Name"
 
                         keyboardType="email-address"
                     />
@@ -46,6 +46,9 @@ function TestingScreen({ navigation }) {
                      <AuthPressable
                         //onPressHandler={isLogin ? loginHandler : signUpHandler}
                         title={'Send Notifications!'}
+                     />
+                     <AuthPressable
+                        title={'Group Order Page'}
                      />
                 </View>
         </KeyboardAvoidingView>

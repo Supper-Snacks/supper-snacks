@@ -76,7 +76,7 @@ const AppNavigator = () => {
             <TodoStack.Screen
                             name="Testing"
                             options={{
-                                headerTitle: 'Order Page',
+                                headerTitle: 'Start Order Page',
                                 headerRight: () => <LogoutIcon />,
                             }}
                             component={TestingScreen}

@@ -93,6 +93,10 @@ const HomeScreen = ({ navigation }) => {
       });
 
       console.log(`Added to hall group: ${newHallUser.id}`)
+      ToastAndroid.show(
+                  'You have been added to the Halls group!',
+                  ToastAndroid.SHORT
+              );
     };
 
     const addRCUser = async () => {
@@ -101,6 +105,10 @@ const HomeScreen = ({ navigation }) => {
        });
 
        console.log(`Added to RC group: ${newRCUser.id}`)
+       ToastAndroid.show(
+                   'You have been added to the Residential Colleges group!',
+                   ToastAndroid.SHORT
+              );
     };
 
     const addRUser = async () => {
@@ -109,6 +117,10 @@ const HomeScreen = ({ navigation }) => {
       });
 
       console.log(`Added to Residences group: ${newRUser.id}`)
+      ToastAndroid.show(
+                        'You have been added to the Residences group!',
+                        ToastAndroid.SHORT
+                    );
     };
 
     const addOtherUser = async () => {
@@ -117,6 +129,10 @@ const HomeScreen = ({ navigation }) => {
       });
 
       console.log(`Added to Others group: ${newOtherUser.id}`)
+      ToastAndroid.show(
+                        'You have been added to the Others group!',
+                        ToastAndroid.SHORT
+                    );
     };
 
     return (
