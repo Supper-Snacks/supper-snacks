@@ -163,6 +163,9 @@ const HomeScreen = ({ navigation }) => {
                         >
                             <Text style={styles.buttonText}>Halls</Text>
                         </Pressable>
+
+                        <View style={styles.space} />
+
                         <Pressable
                             android_ripple={{ color: 'white' }}
                             onPress={addRCUser}
@@ -170,6 +173,9 @@ const HomeScreen = ({ navigation }) => {
                         >
                             <Text style={styles.buttonText}>Residential Colleges</Text>
                         </Pressable>
+
+                        <View style={styles.space} />
+
                         <Pressable
                             android_ripple={{ color: 'white' }}
                             onPress={addRUser}
@@ -177,6 +183,9 @@ const HomeScreen = ({ navigation }) => {
                         >
                             <Text style={styles.buttonText}>Residences</Text>
                         </Pressable>
+
+                        <View style={styles.space} />
+                        
                         <Pressable
                             android_ripple={{ color: 'white' }}
                             onPress={addOtherUser}
@@ -256,5 +265,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
+    },
+    space: {
+        width: 10, // or whatever size you need
+        height: 10,
     },
 });
