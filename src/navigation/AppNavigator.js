@@ -11,6 +11,7 @@ import {
     LoginScreen,
     HomeScreen,
     TestingScreen,
+    GroupOrderScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -74,13 +75,21 @@ const AppNavigator = () => {
                 component={HomeScreen}
             />
             <TodoStack.Screen
-                            name="Testing"
-                            options={{
-                                headerTitle: 'Start Order Page',
-                                headerRight: () => <LogoutIcon />,
-                            }}
-                            component={TestingScreen}
-                        />
+                name="Testing"
+                options={{
+                    headerTitle: 'Start Order Page',
+                    headerRight: () => <LogoutIcon />,
+                }}
+                component={TestingScreen}
+            />
+            <TodoStack.Screen
+                name="Group Order"
+                options={{
+                    headerTitle: 'Group Order Page',
+                    headerRight: () => <LogoutIcon />,
+                }}
+                component={GroupOrderScreen}
+            />
         </TodoStack.Navigator>
     );
 

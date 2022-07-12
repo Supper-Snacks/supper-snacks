@@ -185,7 +185,7 @@ const HomeScreen = ({ navigation }) => {
                         </Pressable>
 
                         <View style={styles.space} />
-                        
+
                         <Pressable
                             android_ripple={{ color: 'white' }}
                             onPress={addOtherUser}

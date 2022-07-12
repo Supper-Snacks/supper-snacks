@@ -21,7 +21,7 @@ import { Task } from '../components';
 const THEME = '#407BFF';
 const { width } = Dimensions.get('window');
 
-function TestingScreen({ navigation }) {
+function GroupOrderScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
                 style={{ flex: 1 }}
@@ -29,45 +29,15 @@ function TestingScreen({ navigation }) {
             >
                 <View style={styles.container}>
                     <Text style={[styles.welcomeText, styles.boldText]}>
-                        {`Fill In Order Details!`}
+                        {`Group Order`}
                     </Text>
-                    <AuthTextInput
 
-                        placeholder="Grab Vendor Name"
-
-                        keyboardType="email-address"
-                    />
-                    <AuthTextInput
-
-                        placeholder="Grab Group Order Link"
-                    />
-                     <AuthTextInput
-
-                        placeholder="Service Fee on Grab"
-
-                     />
-                     <Pressable
-                            android_ripple={{ color: 'white' }}
-                            //onPress={() => navigation.navigate('Home')}
-                            //Marcus: Send Notifications with order details here!
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Send Notifications</Text>
-                        </Pressable>
-                     <View style={styles.space} />
-                     <Pressable
-                            android_ripple={{ color: 'white' }}
-                            onPress={() => navigation.navigate('Group Order')}
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Group Order Page</Text>
-                        </Pressable>
                 </View>
         </KeyboardAvoidingView>
     );
 }
 
-export default TestingScreen;
+export default GroupOrderScreen;
 
 const styles = StyleSheet.create({
     container: {
