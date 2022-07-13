@@ -48,7 +48,8 @@ const GroupOrderScreen = ({ navigation }) => {
     const showRes = (text) => {
         ToastAndroid.show(text, ToastAndroid.SHORT);
     };
-
+    const auth = getAuth();
+    const user = auth.currentUser;
     // https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9
     // https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9_7
     const onSubmitHandler = async () => {
@@ -59,14 +60,15 @@ const GroupOrderScreen = ({ navigation }) => {
 
         // Todo
         try {
+
             const taskRef = await addDoc(collection(db, 'tasks'), {
                 desc: task,
+                user: user.uid,
             });
 
-            console.log('completed', taskRef.id);
+            console.log('completed', taskRef.id, user.uid);
         } catch (error) {
             console.log(error);
-
         }
     };
 
