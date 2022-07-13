@@ -110,13 +110,19 @@ const GroupOrderScreen = ({ navigation }) => {
                     </View>
                 </View>
                 <View style={styles.formContainer}>
-
+                    <TextInput
+                        onChangeText={setTask}
+                        value={task}
+                        selectionColor={THEME}
+                        placeholder={INPUT_PLACEHOLDER}
+                        style={styles.taskInput}
+                    />
                     <Pressable
                         onPress={onSubmitHandler}
                         android_ripple={{ color: 'white' }}
                         style={styles.button}
                     >
-                        <Text style={styles.buttonText}>Start Order</Text>
+                        <Text style={styles.buttonText}>Add</Text>
                     </Pressable>
                 </View>
             </SafeAreaView>
