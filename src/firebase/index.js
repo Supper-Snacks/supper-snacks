@@ -35,6 +35,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
-
+//const messaging = getMessaging(app);
+//messaging.getToken({vapidKey: "BDGGnJytH87x6d886c7RfRvftpPViuXWxHb4ev9rGP72YuvmvuXCJ7XxaPDsFo9_IX7JlTGSvByeifflY6DOpHM"});
 
 export { auth, db, };
