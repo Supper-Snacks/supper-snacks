@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+import { getMessaging } from "firebase/messaging";
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { doc, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,8 +33,9 @@ const firebaseConfig = {
 // https://firebase.google.com/docs/web/setup
 // https://docs.expo.dev/guides/using-firebase/
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth();
 const db = getFirestore(app);
+//const messaging = getMessaging(app);
+//messaging.getToken({vapidKey: "BDGGnJytH87x6d886c7RfRvftpPViuXWxHb4ev9rGP72YuvmvuXCJ7XxaPDsFo9_IX7JlTGSvByeifflY6DOpHM"});
 
-export { auth, db };
+export { auth, db, };
