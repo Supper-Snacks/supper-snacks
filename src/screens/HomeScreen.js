@@ -154,7 +154,8 @@ const HomeScreen = ({ navigation }) => {
                                 />
                             )}
                             style={styles.list}
-                            showsVerticalScrollIndicator={false}
+                            showsVerticalScrollIndicator={true}
+
                         />
                         <Pressable
                             style={styles.button}
@@ -194,6 +195,7 @@ const HomeScreen = ({ navigation }) => {
                             <Text style={styles.buttonText}>Others</Text>
                         </Pressable>
                     </View>
+
                 </View>
                 <View style={styles.formContainer}>
 

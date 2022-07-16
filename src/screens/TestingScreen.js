@@ -22,6 +22,18 @@ const THEME = '#407BFF';
 const { width } = Dimensions.get('window');
 
 function TestingScreen({ navigation }) {
+  const sendNotif = async () => {
+      const newGroupOrder = await addDoc(collection(db, "Group Orders"), {
+              vendorName: 'ameens',
+              orderLink:'blah',
+              serviceFee: '0'
+            });
+      console.log(`Group Order Started By: ${newGroupOrder.id}`)
+      ToastAndroid.show(
+                  'Order Started!',
+                  ToastAndroid.SHORT
+              );
+    };
   return (
     <KeyboardAvoidingView
                 style={{ flex: 1 }}
@@ -48,7 +60,7 @@ function TestingScreen({ navigation }) {
                      />
                      <Pressable
                             android_ripple={{ color: 'white' }}
-                            //onPress={() => navigation.navigate('Home')}
+                            onPress={sendNotif}
                             //Marcus: Send Notifications with order details here!
                             style={styles.button}
                         >
