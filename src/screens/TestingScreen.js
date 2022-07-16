@@ -14,19 +14,28 @@ import {
 import React, { useState, useEffect } from 'react';
 import { AuthTextInput, AuthPressable } from '../components';
 import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
-
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
+import { getAuth } from "firebase/auth";
 import { Task } from '../components';
 
 const THEME = '#407BFF';
 const { width } = Dimensions.get('window');
 
 function TestingScreen({ navigation }) {
+  const [vendorName, setVendorName] = useState('');
+  const [orderLink, setorderLink] = useState('');
+  const [serviceFee, setserviceFee] = useState('');
+  const clearForm = () => {
+          setVendorName('');
+          setorderLink('');
+          setserviceFee('');
+          Keyboard.dismiss();
+  };
   const sendNotif = async () => {
       const newGroupOrder = await addDoc(collection(db, "Group Orders"), {
-              vendorName: 'ameens',
-              orderLink:'blah',
-              serviceFee: '0'
+              vendorName: vendorName,
+              orderLink: orderLink,
+              serviceFee: serviceFee
             });
       console.log(`Group Order Started By: ${newGroupOrder.id}`)
       ToastAndroid.show(
@@ -43,20 +52,29 @@ function TestingScreen({ navigation }) {
                     <Text style={[styles.welcomeText, styles.boldText]}>
                         {`Fill In Order Details!`}
                     </Text>
-                    <AuthTextInput
 
-                        placeholder="Grab Vendor Name"
+                    <TextInput
+                         onChangeText={setVendorName}
+                         value={vendorName}
+                         selectionColor={THEME}
+                         placeholder= "Grab vendor name"
+                         style={styles.taskInput}
+                     />
 
-                        keyboardType="email-address"
+                    <TextInput
+                         onChangeText={setorderLink}
+                         value={orderLink}
+                         selectionColor={THEME}
+                         placeholder= "Grab group order link"
+                         style={styles.taskInput}
+
                     />
-                    <AuthTextInput
-
-                        placeholder="Grab Group Order Link"
-                    />
-                     <AuthTextInput
-
-                        placeholder="Service Fee on Grab"
-
+                     <TextInput
+                         onChangeText={setserviceFee}
+                         value={serviceFee}
+                         selectionColor={THEME}
+                         placeholder= "Service Fee on Grab"
+                         style={styles.taskInput}
                      />
                      <Pressable
                             android_ripple={{ color: 'white' }}
@@ -99,6 +117,23 @@ const styles = StyleSheet.create({
     authText: {
         fontSize: 20,
         marginBottom: 10,
+    },
+    formContainer: {
+            position: 'absolute',
+            bottom: 0,
+            flexDirection: 'row',
+            paddingHorizontal: 14,
+            paddingVertical: 8,
+            backgroundColor: '#FAF9F6',
+    },
+    taskInput: {
+            width: width * 0.7,
+            borderWidth: 2,
+            borderRadius: 5,
+            borderColor: '#E0D4B0',
+            paddingVertical: 10,
+            paddingHorizontal: 12,
+            marginRight: 8,
     },
     button: {
         width: width * 0.4,
