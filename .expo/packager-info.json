@@ -1,9 +1,10 @@
 {
-  "devToolsPort": 19002,
+  "expoServerNgrokUrl": "https://fa-eex.weijieguok.supper-snacks.exp.direct",
+  "packagerNgrokUrl": "https://fa-eex.weijieguok.supper-snacks.exp.direct",
+  "ngrokPid": 26528,
   "expoServerPort": 19000,
+  "devToolsPort": 19002,
   "packagerPort": 19000,
-  "webpackServerPort": 19006,
-  "expoServerNgrokUrl": "https://fa-eex.anonymous.supper-snacks.exp.direct",
-  "packagerNgrokUrl": "https://fa-eex.anonymous.supper-snacks.exp.direct",
-  "ngrokPid": 22724
+  "packagerPid": null,
+  "webpackServerPort": null
 }

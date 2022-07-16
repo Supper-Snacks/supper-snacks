@@ -7,16 +7,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { auth } from '../firebase';
 import {
-    MainScreen,
-    Ex1Incorrect,
-    Ex1Solution,
-    Ex2Solution,
-    Ex1SolutionRedux,
-    CountRedux,
     AuthScreen,
     LoginScreen,
-    UsersScreen,
     HomeScreen,
+    TestingScreen,
+    GroupOrderScreen,
 } from '../screens';
 
 const Stack = createNativeStackNavigator();
@@ -45,47 +40,14 @@ const AppNavigator = () => {
     }, []);
 
     const MainNavigator = () => (
-        <Stack.Navigator initialRouteName="Main">
-            <Stack.Screen
-                name="Main"
-                options={{ title: 'Orbital 22 React Native Workshop' }}
-                component={MainScreen}
-            />
-            <Stack.Screen
-                name="Ex1Incorrect"
-                options={{ title: 'Exercise 1 (Incorrect)' }}
-                component={Ex1Incorrect}
-            />
-            <Stack.Screen
-                name="Ex1Solution"
-                options={{ title: 'Exercise 1 (Solution)' }}
-                component={Ex1Solution}
-            />
-            <Stack.Screen
-                name="Ex1SolutionRedux"
-                options={{ title: 'Exercise 1 (Solution Redux)' }}
-                component={Ex1SolutionRedux}
-            />
-            <Stack.Screen
-                name="Ex2Solution"
-                options={{ title: 'Exercise 2 (Solution)' }}
-                component={Ex2Solution}
-            />
-            <Stack.Screen
-                name="CountRedux"
-                options={{ title: 'Count with specific input' }}
-                component={CountRedux}
-            />
+        <Stack.Navigator initialRouteName="Auth">
+
             <Stack.Screen
                 name="Auth"
-                options={{ headerTitle: 'Todo List' }}
+                options={{ headerTitle: 'Supper Snacks' }}
                 component={AuthScreen}
             />
-            <Stack.Screen
-                name="Users"
-                options={{ headerShown: false }}
-                component={UsersScreen}
-            />
+
         </Stack.Navigator>
     );
 
@@ -111,6 +73,22 @@ const AppNavigator = () => {
                     headerRight: () => <LogoutIcon />,
                 }}
                 component={HomeScreen}
+            />
+            <TodoStack.Screen
+                name="Testing"
+                options={{
+                    headerTitle: 'Start Order Page',
+                    headerRight: () => <LogoutIcon />,
+                }}
+                component={TestingScreen}
+            />
+            <TodoStack.Screen
+                name="Group Order"
+                options={{
+                    headerTitle: 'Group Order Page',
+                    headerRight: () => <LogoutIcon />,
+                }}
+                component={GroupOrderScreen}
             />
         </TodoStack.Navigator>
     );

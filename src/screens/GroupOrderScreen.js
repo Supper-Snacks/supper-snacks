@@ -22,10 +22,10 @@ const THEME = '#407BFF';
 
 const { width } = Dimensions.get('window');
 
-const HomeScreen = ({ navigation }) => {
+const GroupOrderScreen = ({ navigation }) => {
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
-    /*
+
     useEffect(() => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
@@ -48,7 +48,8 @@ const HomeScreen = ({ navigation }) => {
     const showRes = (text) => {
         ToastAndroid.show(text, ToastAndroid.SHORT);
     };
-
+    const auth = getAuth();
+    const user = auth.currentUser;
     // https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9
     // https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9_7
     const onSubmitHandler = async () => {
@@ -59,14 +60,15 @@ const HomeScreen = ({ navigation }) => {
 
         // Todo
         try {
+
             const taskRef = await addDoc(collection(db, 'tasks'), {
                 desc: task,
+                user: user.uid,
             });
 
-            console.log('completed', taskRef.id);
+            console.log('completed', taskRef.id, user.uid);
         } catch (error) {
             console.log(error);
-
         }
     };
 
@@ -84,55 +86,6 @@ const HomeScreen = ({ navigation }) => {
     const clearForm = () => {
         setTask('');
         Keyboard.dismiss();
-    }; */
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const addHallUser = async () => {
-      const newHallUser = await addDoc(collection(db, "Halls"), {
-        user: user.uid
-      });
-
-      console.log(`Added to hall group: ${newHallUser.id}`)
-      ToastAndroid.show(
-                  'You have been added to the Halls group!',
-                  ToastAndroid.SHORT
-              );
-    };
-
-    const addRCUser = async () => {
-       const newRCUser = await addDoc(collection(db, "Residential Colleges"), {
-         user: user.uid
-       });
-
-       console.log(`Added to RC group: ${newRCUser.id}`)
-       ToastAndroid.show(
-                   'You have been added to the Residential Colleges group!',
-                   ToastAndroid.SHORT
-              );
-    };
-
-    const addRUser = async () => {
-      const newRUser = await addDoc(collection(db, "Residences"), {
-        user: user.uid
-      });
-
-      console.log(`Added to Residences group: ${newRUser.id}`)
-      ToastAndroid.show(
-                        'You have been added to the Residences group!',
-                        ToastAndroid.SHORT
-                    );
-    };
-
-    const addOtherUser = async () => {
-      const newOtherUser = await addDoc(collection(db, "Others"), {
-        user: user.uid
-      });
-
-      console.log(`Added to Others group: ${newOtherUser.id}`)
-      ToastAndroid.show(
-                        'You have been added to the Others group!',
-                        ToastAndroid.SHORT
-                    );
     };
 
     return (
@@ -142,7 +95,7 @@ const HomeScreen = ({ navigation }) => {
         >
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
-                    <Text style={styles.headerText}>Choose Your Group</Text>
+                    <Text style={styles.headerText}>Add Your Order</Text>
                     <View style={styles.listContainer}>
                         <FlatList
                             data={taskList}
@@ -156,54 +109,22 @@ const HomeScreen = ({ navigation }) => {
                             style={styles.list}
                             showsVerticalScrollIndicator={false}
                         />
-                        <Pressable
-                            style={styles.button}
-                            onPress={addHallUser}
-                            android_ripple={{ color: 'white' }}
-                        >
-                            <Text style={styles.buttonText}>Halls</Text>
-                        </Pressable>
-
-                        <View style={styles.space} />
-
-                        <Pressable
-                            android_ripple={{ color: 'white' }}
-                            onPress={addRCUser}
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Residential Colleges</Text>
-                        </Pressable>
-
-                        <View style={styles.space} />
-
-                        <Pressable
-                            android_ripple={{ color: 'white' }}
-                            onPress={addRUser}
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Residences</Text>
-                        </Pressable>
-
-                        <View style={styles.space} />
-
-                        <Pressable
-                            android_ripple={{ color: 'white' }}
-                            onPress={addOtherUser}
-                            style={styles.button}
-                        >
-                            <Text style={styles.buttonText}>Others</Text>
-                        </Pressable>
                     </View>
                 </View>
                 <View style={styles.formContainer}>
-
+                    <TextInput
+                        onChangeText={setTask}
+                        value={task}
+                        selectionColor={THEME}
+                        placeholder={INPUT_PLACEHOLDER}
+                        style={styles.taskInput}
+                    />
                     <Pressable
-                        //onPress={onSubmitHandler}
+                        onPress={onSubmitHandler}
                         android_ripple={{ color: 'white' }}
-                        onPress={() => navigation.navigate('Testing')}
                         style={styles.button}
                     >
-                        <Text style={styles.buttonText}>Start Order</Text>
+                        <Text style={styles.buttonText}>Add</Text>
                     </Pressable>
                 </View>
             </SafeAreaView>
@@ -211,7 +132,7 @@ const HomeScreen = ({ navigation }) => {
     );
 };
 
-export default HomeScreen;
+export default GroupOrderScreen;
 
 const styles = StyleSheet.create({
     container: {
