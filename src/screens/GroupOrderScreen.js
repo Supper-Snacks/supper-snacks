@@ -67,6 +67,7 @@ const GroupOrderScreen = ({ navigation }) => {
             });
 
             console.log('completed', taskRef.id, user.uid);
+            clearForm();
         } catch (error) {
             console.log(error);
         }
