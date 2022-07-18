@@ -143,20 +143,6 @@ const HomeScreen = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Text style={styles.headerText}>Choose Your Group</Text>
-                    <View style={styles.listContainer}>
-                        <FlatList
-                            data={taskList}
-                            renderItem={({ item, index }) => (
-                                <Task
-                                    data={item}
-                                    key={index}
-                                    onDelete={onDeleteHandler}
-                                />
-                            )}
-                            style={styles.list}
-                            showsVerticalScrollIndicator={true}
-
-                        />
                         <Pressable
                             style={styles.button}
                             onPress={addHallUser}
@@ -194,20 +180,37 @@ const HomeScreen = ({ navigation }) => {
                         >
                             <Text style={styles.buttonText}>Others</Text>
                         </Pressable>
+                    <Text style={styles.headerText}>Active Orders</Text>
+                    <View style={styles.listContainer}>
+                        <FlatList
+                            data={taskList}
+                            renderItem={({ item, index }) => (
+                                <Task
+                                    data={item}
+                                    key={index}
+                                    onDelete={onDeleteHandler}
+                                />
+                            )}
+                            style={styles.list}
+                            showsVerticalScrollIndicator={true}
+
+                        />
+
+                        <View style={styles.space} />
+
+
                     </View>
 
                 </View>
-                <View style={styles.formContainer}>
 
                     <Pressable
-                        //onPress={onSubmitHandler}
                         android_ripple={{ color: 'white' }}
                         onPress={() => navigation.navigate('Testing')}
                         style={styles.button}
                     >
-                        <Text style={styles.buttonText}>Start Order</Text>
+                        <Text style={styles.buttonText}>Start An Order</Text>
                     </Pressable>
-                </View>
+
             </SafeAreaView>
         </KeyboardAvoidingView>
     );
@@ -233,7 +236,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontWeight: 'bold',
-        fontSize: 32,
+        fontSize: 28,
         marginLeft: 14,
         marginTop: 14,
         marginBottom: 10,
@@ -257,8 +260,8 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     button: {
-        width: width * 0.22,
-        paddingVertical: 20,
+        width: width * 0.26,
+        paddingVertical: 25,
         paddingHorizontal: 6,
         backgroundColor: THEME,
         borderRadius: 5,
