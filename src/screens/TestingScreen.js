@@ -12,7 +12,7 @@ import {
     Keyboard,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs } from 'firebase/firestore';
+import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
 import { Task } from '../components';
@@ -32,13 +32,13 @@ function TestingScreen({ navigation }) {
           setserviceFee('');
           Keyboard.dismiss();
   };
+
   const sendNotif = async () => {
       const newGroupOrder = await addDoc(collection(db, "Group Orders"), {
               vendorName: vendorName,
               orderLink: orderLink,
               serviceFee: serviceFee,
               user: user.uid,
-              group: userGroup,
             });
       console.log(`Group Order ${newGroupOrder.id} Started By: ${user.uid}`)
       const q = query(collection(db, "Group Orders"), where("user", "==", user.uid));

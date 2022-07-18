@@ -222,7 +222,7 @@ const HomeScreen = ({ navigation }) => {
                     >
                         <Text style={styles.buttonText}>Start An Order</Text>
                     </Pressable>
-
+                    <View style={styles.space} />
             </SafeAreaView>
         </KeyboardAvoidingView>
     );
@@ -289,6 +289,6 @@ const styles = StyleSheet.create({
     },
     space: {
         width: 10, // or whatever size you need
-        height: 10,
+        height: 30,
     },
 });
