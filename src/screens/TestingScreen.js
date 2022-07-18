@@ -37,7 +37,8 @@ function TestingScreen({ navigation }) {
               vendorName: vendorName,
               orderLink: orderLink,
               serviceFee: serviceFee,
-              user: user.uid
+              user: user.uid,
+              group: userGroup,
             });
       console.log(`Group Order ${newGroupOrder.id} Started By: ${user.uid}`)
       const q = query(collection(db, "Group Orders"), where("user", "==", user.uid));

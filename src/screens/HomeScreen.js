@@ -12,7 +12,7 @@ import {
     Keyboard,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
 import { Task, Order } from '../components';
@@ -30,8 +30,8 @@ const HomeScreen = ({ navigation }) => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
         // Todo: listen to firestore changes
-        const orderQuery = query(collection(db, 'Group Orders'));
 
+        const orderQuery = query(collection(db, 'Group Orders'), where("user", "==", user.uid));
         const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
 
@@ -85,13 +85,17 @@ const HomeScreen = ({ navigation }) => {
         setTask('');
         Keyboard.dismiss();
     };
+
     const auth = getAuth();
     const user = auth.currentUser;
     const addHallUser = async () => {
       const newHallUser = await addDoc(collection(db, "Halls"), {
         user: user.uid
       });
-
+      const hallUser = await setDoc(doc(db, "users", user.uid), {
+        user: user.uid,
+        group: 'Halls'
+      });
       console.log(`Added to hall group: ${newHallUser.id}`)
       ToastAndroid.show(
                   'You have been added to the Halls group!',
@@ -103,7 +107,10 @@ const HomeScreen = ({ navigation }) => {
        const newRCUser = await addDoc(collection(db, "Residential Colleges"), {
          user: user.uid
        });
-
+      const RCUser = await setDoc(doc(db, "users", user.uid), {
+        user: user.uid,
+        group: 'Residential Colleges'
+      });
        console.log(`Added to RC group: ${newRCUser.id}`)
        ToastAndroid.show(
                    'You have been added to the Residential Colleges group!',
@@ -115,7 +122,10 @@ const HomeScreen = ({ navigation }) => {
       const newRUser = await addDoc(collection(db, "Residences"), {
         user: user.uid
       });
-
+      const RUser = await setDoc(doc(db, "users", user.uid), {
+        user: user.uid,
+        group: 'Residences'
+      });
       console.log(`Added to Residences group: ${newRUser.id}`)
       ToastAndroid.show(
                         'You have been added to the Residences group!',
@@ -126,6 +136,10 @@ const HomeScreen = ({ navigation }) => {
     const addOtherUser = async () => {
       const newOtherUser = await addDoc(collection(db, "Others"), {
         user: user.uid
+      });
+      const OtherUser = await setDoc(doc(db, "users", user.uid), {
+        user: user.uid,
+        group: 'Others'
       });
 
       console.log(`Added to Others group: ${newOtherUser.id}`)
@@ -220,10 +234,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FAF9F6',
+        alignItems: 'center',
     },
     contentContainer: {
         flex: 1,
         backgroundColor: '#FAF9F6',
+        marginLeft: 20,
+        marginRight: 20,
     },
     listContainer: {
         flex: 1,
