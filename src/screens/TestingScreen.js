@@ -12,8 +12,7 @@ import {
     Keyboard,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { AuthTextInput, AuthPressable } from '../components';
-import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
 import { Task } from '../components';
@@ -25,6 +24,8 @@ function TestingScreen({ navigation }) {
   const [vendorName, setVendorName] = useState('');
   const [orderLink, setorderLink] = useState('');
   const [serviceFee, setserviceFee] = useState('');
+  const auth = getAuth();
+  const user = auth.currentUser;
   const clearForm = () => {
           setVendorName('');
           setorderLink('');
@@ -35,9 +36,17 @@ function TestingScreen({ navigation }) {
       const newGroupOrder = await addDoc(collection(db, "Group Orders"), {
               vendorName: vendorName,
               orderLink: orderLink,
-              serviceFee: serviceFee
+              serviceFee: serviceFee,
+              user: user.uid
             });
-      console.log(`Group Order Started By: ${newGroupOrder.id}`)
+      console.log(`Group Order ${newGroupOrder.id} Started By: ${user.uid}`)
+      const q = query(collection(db, "Group Orders"), where("user", "==", user.uid));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
       ToastAndroid.show(
                   'Order Started!',
                   ToastAndroid.SHORT

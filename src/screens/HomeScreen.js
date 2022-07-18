@@ -15,7 +15,7 @@ import React, { useState, useEffect } from 'react';
 import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
-import { Task } from '../components';
+import { Task, Order } from '../components';
 
 const INPUT_PLACEHOLDER = 'Enter your order and hit Add';
 const THEME = '#407BFF';
@@ -25,14 +25,14 @@ const { width } = Dimensions.get('window');
 const HomeScreen = ({ navigation }) => {
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
-    /*
+
     useEffect(() => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
         // Todo: listen to firestore changes
-        const taskQuery = query(collection(db, 'tasks'));
+        const orderQuery = query(collection(db, 'Group Orders'));
 
-        const subscriber = onSnapshot(taskQuery, (snapshot) => {
+        const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
 
             snapshot.forEach(doc => {
@@ -45,7 +45,7 @@ const HomeScreen = ({ navigation }) => {
         return subscriber;
     }, []);
 
-    const showRes = (text) => {
+    /*const showRes = (text) => {
         ToastAndroid.show(text, ToastAndroid.SHORT);
     };
 
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
             console.log(error);
 
         }
-    };
+    };*/
 
     const onDeleteHandler = async (id) => {
         // Todo
@@ -84,7 +84,7 @@ const HomeScreen = ({ navigation }) => {
     const clearForm = () => {
         setTask('');
         Keyboard.dismiss();
-    }; */
+    };
     const auth = getAuth();
     const user = auth.currentUser;
     const addHallUser = async () => {
@@ -143,6 +143,7 @@ const HomeScreen = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Text style={styles.headerText}>Choose Your Group</Text>
+                        <View style = {{ flexDirection:"row" }}>
                         <Pressable
                             style={styles.button}
                             onPress={addHallUser}
@@ -180,6 +181,7 @@ const HomeScreen = ({ navigation }) => {
                         >
                             <Text style={styles.buttonText}>Others</Text>
                         </Pressable>
+                        </View>
                     <Text style={styles.headerText}>Active Orders</Text>
                     <View style={styles.listContainer}>
                         <FlatList
@@ -197,12 +199,8 @@ const HomeScreen = ({ navigation }) => {
                         />
 
                         <View style={styles.space} />
-
-
                     </View>
-
                 </View>
-
                     <Pressable
                         android_ripple={{ color: 'white' }}
                         onPress={() => navigation.navigate('Testing')}
@@ -236,7 +234,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontWeight: 'bold',
-        fontSize: 28,
+        fontSize: 20,
         marginLeft: 14,
         marginTop: 14,
         marginBottom: 10,
@@ -260,9 +258,9 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     button: {
-        width: width * 0.26,
-        paddingVertical: 25,
-        paddingHorizontal: 6,
+        width: width * 0.20,
+        paddingVertical: 20,
+        paddingHorizontal: 5,
         backgroundColor: THEME,
         borderRadius: 5,
         justifyContent: 'center',
@@ -270,6 +268,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
+        fontSize: 13,
     },
     space: {
         width: 10, // or whatever size you need
