@@ -12,7 +12,7 @@ import {
     Keyboard,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, getDoc } from 'firebase/firestore';
+import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
 import { Task, Order } from '../components';
@@ -31,18 +31,15 @@ const HomeScreen = ({ navigation }) => {
     const [userGroup, setUserGroup] = useState('');
 
     useEffect(() => {
-          const getUserGroup = async () => {
-            const snap = await getDoc(userDocRef)
-            setUserGroup(snap.data())
-          }
-          getUserGroup()
-        },[])
-
-    useEffect(() => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
         // Todo: listen to firestore changes
+        const getUserGroup = async () => {
 
+                        const snap = await getDoc(userDocRef)
+                        setUserGroup(snap.data())
+                      };
+        getUserGroup();
         const orderQuery = query(collection(db, 'Group Orders'), where("group", "==", userGroup.group));
         const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
@@ -57,7 +54,12 @@ const HomeScreen = ({ navigation }) => {
         return subscriber;
     }, []);
 
-    /*const showRes = (text) => {
+
+    /* const forceUpdateHandler = () => {
+        forceUpdate();
+      };
+
+    const showRes = (text) => {
         ToastAndroid.show(text, ToastAndroid.SHORT);
     };
 
@@ -215,7 +217,7 @@ const HomeScreen = ({ navigation }) => {
                                 <Task
                                     data={item}
                                     key={index}
-                                    onDelete={onDeleteHandler}
+                                    //onDelete={onDeleteHandler}
                                 />
                             )}
                             style={styles.list}
@@ -226,6 +228,7 @@ const HomeScreen = ({ navigation }) => {
                         <View style={styles.space} />
                     </View>
                 </View>
+                    <View style = {{ flexDirection:"row" }}>
                     <Pressable
                         android_ripple={{ color: 'white' }}
                         onPress={() => navigation.navigate('Testing')}
@@ -233,6 +236,16 @@ const HomeScreen = ({ navigation }) => {
                     >
                         <Text style={styles.buttonText}>Start An Order</Text>
                     </Pressable>
+                    <View style={styles.space} />
+                    <Pressable
+                        android_ripple={{ color: 'white' }}
+                        //onPress={forceUpdateHandler}
+                        style={styles.button}
+                    >
+                        <Text style={styles.buttonText}>Refresh Page</Text>
+                    </Pressable>
+
+                    </View>
                     <View style={styles.space} />
             </SafeAreaView>
         </KeyboardAvoidingView>

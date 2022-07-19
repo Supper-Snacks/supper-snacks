@@ -10,7 +10,7 @@ const Order = (props) => {
             <MaterialIcons name="delete" size={28} color="#407BFF" />
         </TouchableOpacity>
     );
-
+    this.forceUpdate();
     return (
         <View style={[styles.container, styles.containerShadow]}>
             <Text style={styles.taskText}>{data.desc}</Text>
