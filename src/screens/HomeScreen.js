@@ -12,7 +12,7 @@ import {
     Keyboard,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, setDoc } from 'firebase/firestore';
+import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
 import { Task, Order } from '../components';
@@ -23,15 +23,27 @@ const THEME = '#407BFF';
 const { width } = Dimensions.get('window');
 
 const HomeScreen = ({ navigation }) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
     const [task, setTask] = useState('');
     const [taskList, setTaskList] = useState([]);
+    const userDocRef = doc(db,"users", user.uid);
+    const [userGroup, setUserGroup] = useState('');
+
+    useEffect(() => {
+          const getUserGroup = async () => {
+            const snap = await getDoc(userDocRef)
+            setUserGroup(snap.data())
+          }
+          getUserGroup()
+        },[])
 
     useEffect(() => {
         // Expensive operation. Consider your app's design on when to invoke this.
         // Could use Redux to help on first application load.
         // Todo: listen to firestore changes
 
-        const orderQuery = query(collection(db, 'Group Orders'), where("user", "==", user.uid));
+        const orderQuery = query(collection(db, 'Group Orders'), where("group", "==", userGroup.group));
         const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
 
@@ -86,8 +98,7 @@ const HomeScreen = ({ navigation }) => {
         Keyboard.dismiss();
     };
 
-    const auth = getAuth();
-    const user = auth.currentUser;
+
     const addHallUser = async () => {
       const newHallUser = await addDoc(collection(db, "Halls"), {
         user: user.uid
