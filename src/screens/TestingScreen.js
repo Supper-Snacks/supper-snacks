@@ -12,7 +12,7 @@ import {
     Keyboard,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, getDoc } from 'firebase/firestore';
+import { query, collection, onSnapshot, addDoc, deleteDoc, doc, where, getDocs, getDoc, getString } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
 import { Task } from '../components';
@@ -21,11 +21,25 @@ const THEME = '#407BFF';
 const { width } = Dimensions.get('window');
 
 function TestingScreen({ navigation }) {
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [vendorName, setVendorName] = useState('');
   const [orderLink, setorderLink] = useState('');
   const [serviceFee, setserviceFee] = useState('');
-  const auth = getAuth();
-  const user = auth.currentUser;
+
+  const userDocRef = doc(db,"users", user.uid);
+  const [userGroup, setUserGroup] = useState('');
+
+    useEffect(() => {
+      const getUserGroup = async () => {
+        const snap = await getDoc(userDocRef)
+        setUserGroup(snap.data())
+      }
+      getUserGroup()
+    },[])
+
   const clearForm = () => {
           setVendorName('');
           setorderLink('');
@@ -34,12 +48,15 @@ function TestingScreen({ navigation }) {
   };
 
   const sendNotif = async () => {
+
       const newGroupOrder = await addDoc(collection(db, "Group Orders"), {
               vendorName: vendorName,
               orderLink: orderLink,
               serviceFee: serviceFee,
               user: user.uid,
+              group: userGroup.group,
             });
+            
       console.log(`Group Order ${newGroupOrder.id} Started By: ${user.uid}`)
       const q = query(collection(db, "Group Orders"), where("user", "==", user.uid));
 
