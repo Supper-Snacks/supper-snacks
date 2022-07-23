@@ -35,12 +35,11 @@ const HomeScreen = ({ navigation }) => {
         // Could use Redux to help on first application load.
         // Todo: listen to firestore changes
         const getUserGroup = async () => {
-
                         const snap = await getDoc(userDocRef)
                         setUserGroup(snap.data())
                       };
         getUserGroup();
-        const orderQuery = query(collection(db, 'Group Orders'), where("group", "==", userGroup.group));
+        const orderQuery = query(collection(db, 'Group Orders'));
         const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
 

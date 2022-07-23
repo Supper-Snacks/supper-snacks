@@ -109,7 +109,7 @@ function TestingScreen({ navigation }) {
                             //Marcus: Send Notifications with order details here!
                             style={styles.button}
                         >
-                            <Text style={styles.buttonText}>Send Notifications</Text>
+                            <Text style={styles.buttonText}>Start Group Order!</Text>
                         </Pressable>
                      <View style={styles.space} />
                      <Pressable
