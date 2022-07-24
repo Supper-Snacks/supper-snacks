@@ -17,8 +17,11 @@ const Order = (props) => {
             style={[styles.container, styles.containerShadow]} 
             onPress={() => onDelete()}>
             <MaterialIcons name="lunch-dining" size={28} color="#fceec0" />
-            <Text style={styles.taskText}>{data.vendorName}</Text>
-            <Text style={styles.taskText}>Delivery Fee: {data.serviceFee}</Text>
+            <Text style={styles.taskText}>
+            vendor: {data.vendorName}{"\n"}
+            delivery fee: {data.serviceFee}{"\n"}
+            Grab link: {data.orderLink}
+            </Text>
             <DeleteIcon />
         </TouchableOpacity>
         </View>
