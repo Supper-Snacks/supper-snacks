@@ -213,10 +213,10 @@ const HomeScreen = ({ navigation }) => {
                         <FlatList
                             data={taskList}
                             renderItem={({ item, index }) => (
-                                <Task
+                                <Order
                                     data={item}
                                     key={index}
-                                    //onDelete={onDeleteHandler}
+                                    onDelete={() => navigation.navigate('Group Order')}
                                 />
                             )}
                             style={styles.list}
@@ -236,13 +236,6 @@ const HomeScreen = ({ navigation }) => {
                         <Text style={styles.buttonText}>Start An Order</Text>
                     </Pressable>
                     <View style={styles.space} />
-                    <Pressable
-                        android_ripple={{ color: 'white' }}
-                        //onPress={forceUpdateHandler}
-                        style={styles.button}
-                    >
-                        <Text style={styles.buttonText}>Refresh Page</Text>
-                    </Pressable>
 
                     </View>
                     <View style={styles.space} />
