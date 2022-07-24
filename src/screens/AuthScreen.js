@@ -94,7 +94,7 @@ const AuthScreen = () => {
             behavior={Platform.OS === 'ios' ? 'padding' : null}
         >
             <View style={styles.container}>
-            <MaterialIcons name="lunch-dining" size={100} color="blue" />
+            <MaterialIcons name="restaurant" size={100} color="blue" />
                 <Text style={[styles.welcomeText, styles.boldText]}>
                     {`Turn Your Cravings\nInto Reality!`}
                 </Text>

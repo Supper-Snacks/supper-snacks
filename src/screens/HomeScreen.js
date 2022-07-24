@@ -169,7 +169,7 @@ const HomeScreen = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Text style={styles.headerText}>Choose Your Group</Text>
-                        <View style = {{ flexDirection:"row" }}>
+                        <View style = {styles.formContainer}>
                         <Pressable
                             style={styles.button}
                             onPress={addHallUser}
@@ -251,8 +251,8 @@ const styles = StyleSheet.create({
     contentContainer: {
         flex: 1,
         backgroundColor: '#e4f5f2',
-        marginLeft: 20,
-        marginRight: 20,
+        marginLeft: 10,
+        marginRight: 10,
     },
     listContainer: {
         flex: 1,
@@ -270,12 +270,13 @@ const styles = StyleSheet.create({
         color: THEME,
     },
     formContainer: {
-        position: 'absolute',
+        position: 'relative',
         bottom: 0,
         flexDirection: 'row',
         paddingHorizontal: 14,
         paddingVertical: 8,
-        backgroundColor: '#FAF9F6',
+        borderRadius: 5,
+        backgroundColor: '#edfcfa',
     },
     taskInput: {
         width: width * 0.7,
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     button: {
         width: width * 0.20,
         paddingVertical: 20,
-        paddingHorizontal: 5,
+        paddingHorizontal: 2,
         backgroundColor: THEME,
         borderRadius: 5,
         justifyContent: 'center',
