@@ -1,4 +1,7 @@
 import {
+    Alert,
+    Button,
+    Linking,
     StyleSheet,
     Text,
     View,
@@ -11,7 +14,7 @@ import {
     ToastAndroid,
     Keyboard,
 } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { query, collection, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { getAuth } from "firebase/auth";
@@ -89,6 +92,27 @@ const GroupOrderScreen = ({ navigation }) => {
         Keyboard.dismiss();
     };
 
+    const supportedURL = "https://grab.onelink.me/2695613898?pid=website&af_sub5=referral&c=gw_exp_home0_202110&af_r=https%3A%2F%2Fwww.grab.com%2Fsg%2Fdownload%2F%3Futm_campaign%3Dgw_exp_home0_202110%26utm_source%3Dgrab.com%26utm_medium%3Dreferral%26utm_content%3DDownloadApp_SG&deep_link_value=grab%3A%2F%2Fopen&af_dp=grab%3A%2F%2Fopen";
+
+    const unsupportedURL = "slack://open?team=123456";
+
+    const OpenURLButton = ({ url, children }) => {
+        const handlePress = useCallback(async () => {
+          // Checking if the link is supported for links with custom URL scheme.
+          const supported = await Linking.canOpenURL(url);
+      
+          if (supported) {
+            // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+            // by some browser in the mobile
+            await Linking.openURL(url);
+          } else {
+            Alert.alert(`Don't know how to open this URL: ${url}`);
+          }
+        }, [url]);
+      
+        return <Button title={children} onPress={handlePress} color='green' />;
+      };
+
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -97,6 +121,9 @@ const GroupOrderScreen = ({ navigation }) => {
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
                     <Text style={styles.headerText}>Add Your Order and Price</Text>
+                    <View >
+      <OpenURLButton url={supportedURL}>Open Grab</OpenURLButton>
+    </View>
                     <View style={styles.listContainer}>
                         <FlatList
                             data={taskList}
