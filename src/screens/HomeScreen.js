@@ -54,35 +54,6 @@ const HomeScreen = ({ navigation }) => {
     }, []);
 
 
-    /* const forceUpdateHandler = () => {
-        forceUpdate();
-      };
-
-    const showRes = (text) => {
-        ToastAndroid.show(text, ToastAndroid.SHORT);
-    };
-
-    // https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9
-    // https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-9_7
-    const onSubmitHandler = async () => {
-        if (task.length === 0) {
-            showRes('Task description cannot be empty!');
-            return;
-        }
-
-        // Todo
-        try {
-            const taskRef = await addDoc(collection(db, 'tasks'), {
-                desc: task,
-            });
-
-            console.log('completed', taskRef.id);
-        } catch (error) {
-            console.log(error);
-
-        }
-    };*/
-
     const onDeleteHandler = async (id) => {
         // Todo
         try {

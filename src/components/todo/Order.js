@@ -1,9 +1,26 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Linking, Alert } from 'react-native';
+import React, { useCallback } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Order = (props) => {
     const { data, onDelete } = props;
+
+    const OpenURLButton = ({ url, children }) => {
+            const handlePress = useCallback(async () => {
+              // Checking if the link is supported for links with custom URL scheme.
+              const supported = await Linking.canOpenURL(url);
+
+              if (supported) {
+                // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+                // by some browser in the mobile
+                await Linking.openURL(url);
+              } else {
+                Alert.alert(`Don't know how to open this URL: ${url}`);
+              }
+            }, [url]);
+
+            return <Button title={children} onPress={handlePress} color='green' />;
+          };
 
     const DeleteIcon = () => (
         <TouchableOpacity onPress={() => onDelete()}>
@@ -20,8 +37,9 @@ const Order = (props) => {
             <Text style={styles.taskText}>
             vendor: {data.vendorName}{"\n"}
             delivery fee: {data.serviceFee}{"\n"}
-            Grab link: {data.orderLink}
+
             </Text>
+<OpenURLButton url={data.orderLink}>Join On Grab</OpenURLButton>
             <DeleteIcon />
         </TouchableOpacity>
         </View>
@@ -56,5 +74,9 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         marginRight: 10,
         marginHorizontal: 10
+    },
+    space: {
+            width: 10, // or whatever size you need
+            height: 30,
     },
 });
