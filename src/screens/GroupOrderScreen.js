@@ -96,7 +96,7 @@ const GroupOrderScreen = ({ navigation }) => {
         >
             <SafeAreaView style={styles.container}>
                 <View style={styles.contentContainer}>
-                    <Text style={styles.headerText}>Add Your Order</Text>
+                    <Text style={styles.headerText}>Add Your Order and Price</Text>
                     <View style={styles.listContainer}>
                         <FlatList
                             data={taskList}
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         fontWeight: 'bold',
-        fontSize: 32,
+        fontSize: 23,
         marginLeft: 14,
         marginTop: 14,
         marginBottom: 10,
