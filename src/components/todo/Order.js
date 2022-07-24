@@ -6,15 +6,20 @@ const Order = (props) => {
     const { data, onDelete } = props;
 
     const DeleteIcon = () => (
-        <TouchableOpacity onPress={() => onDelete(data.id)}>
-            <MaterialIcons name="delete" size={28} color="#407BFF" />
+        <TouchableOpacity onPress={() => onDelete()}>
+            <MaterialIcons name="chevron-right" size={28} color="white" />
         </TouchableOpacity>
     );
 
     return (
-        <View style={[styles.container, styles.containerShadow]}>
+        <View>
+        <TouchableOpacity 
+            style={[styles.container, styles.containerShadow]} 
+            onPress={() => onDelete()}>
+            <MaterialIcons name="lunch-dining" size={28} color="#fceec0" />
             <Text style={styles.taskText}>{data.vendorName}</Text>
             <DeleteIcon />
+        </TouchableOpacity>
         </View>
     );
 };
@@ -24,7 +29,7 @@ export default Order;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#E0D4B0',
+        backgroundColor: '#669BB7',
         flexDirection: 'row',
         marginHorizontal: 14,
         marginVertical: 10,
@@ -41,9 +46,11 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     taskText: {
+        color: 'white',
         fontWeight: 'bold',
         flex: 1,
         flexWrap: 'wrap',
         marginRight: 10,
+        marginHorizontal: 10
     },
 });

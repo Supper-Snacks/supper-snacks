@@ -138,11 +138,11 @@ export default GroupOrderScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FAF9F6',
+        backgroundColor: '#e4f5f2',
     },
     contentContainer: {
         flex: 1,
-        backgroundColor: '#FAF9F6',
+        backgroundColor: '#e4f5f2',
     },
     listContainer: {
         flex: 1,

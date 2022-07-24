@@ -7,6 +7,7 @@ import {
     KeyboardAvoidingView,
     Platform,
 } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
     createUserWithEmailAndPassword,
@@ -93,6 +94,7 @@ const AuthScreen = () => {
             behavior={Platform.OS === 'ios' ? 'padding' : null}
         >
             <View style={styles.container}>
+            <MaterialIcons name="lunch-dining" size={100} color="blue" />
                 <Text style={[styles.welcomeText, styles.boldText]}>
                     {`Turn Your Cravings\nInto Reality!`}
                 </Text>
@@ -128,7 +130,7 @@ export default AuthScreen;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#EBECF0',
+        backgroundColor: '#e4f5f2',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

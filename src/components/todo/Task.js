@@ -24,7 +24,7 @@ export default Task;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#E0D4B0',
+        backgroundColor: '#669BB7',
         flexDirection: 'row',
         marginHorizontal: 14,
         marginVertical: 10,
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     taskText: {
+        color: 'white',
         fontWeight: 'bold',
         flex: 1,
         flexWrap: 'wrap',

@@ -87,7 +87,7 @@ function TestingScreen({ navigation }) {
                          placeholder= "Grab vendor name"
                          style={styles.taskInput}
                      />
-
+ <View style={styles.space} />
                     <TextInput
                          onChangeText={setorderLink}
                          value={orderLink}
@@ -96,6 +96,7 @@ function TestingScreen({ navigation }) {
                          style={styles.taskInput}
 
                     />
+                     <View style={styles.space} />
                      <TextInput
                          onChangeText={setserviceFee}
                          value={serviceFee}
@@ -103,6 +104,7 @@ function TestingScreen({ navigation }) {
                          placeholder= "Service Fee on Grab"
                          style={styles.taskInput}
                      />
+                     <View style={styles.space} />
                      <Pressable
                             android_ripple={{ color: 'white' }}
                             onPress={sendNotif}
@@ -128,10 +130,11 @@ export default TestingScreen;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#EBECF0',
+        backgroundColor: '#e4f5f2',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        space: 5
     },
     boldText: {
         fontWeight: '400',

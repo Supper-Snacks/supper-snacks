@@ -39,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
                         setUserGroup(snap.data())
                       };
         getUserGroup();
-        const orderQuery = query(collection(db, 'Group Orders'), where("group", "==", userGroup.group));
+        const orderQuery = query(collection(db, 'Group Orders'));
         const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
 
@@ -223,20 +223,16 @@ const HomeScreen = ({ navigation }) => {
                             showsVerticalScrollIndicator={true}
 
                         />
-
-                        <View style={styles.space} />
                     </View>
                 </View>
                     <View style = {{ flexDirection:"row" }}>
                     <Pressable
                         android_ripple={{ color: 'white' }}
                         onPress={() => navigation.navigate('Testing')}
-                        style={styles.button}
+                        style={styles.lastButton}
                     >
                         <Text style={styles.buttonText}>Start An Order</Text>
                     </Pressable>
-                    <View style={styles.space} />
-
                     </View>
                     <View style={styles.space} />
             </SafeAreaView>
@@ -249,18 +245,18 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FAF9F6',
-        alignItems: 'center',
+        backgroundColor: '#e4f5f2',
+        alignItems: 'center'
     },
     contentContainer: {
         flex: 1,
-        backgroundColor: '#FAF9F6',
+        backgroundColor: '#e4f5f2',
         marginLeft: 20,
         marginRight: 20,
     },
     listContainer: {
         flex: 1,
-        paddingBottom: 70, // Fix: Temporary workaround
+        paddingBottom: 10, // Fix: Temporary workaround
     },
     list: {
         overflow: 'scroll',
@@ -299,9 +295,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    lastButton: {
+        flex: 0.8,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+        backgroundColor: 'green',
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 10
+    },
     buttonText: {
         color: 'white',
         fontSize: 13,
+        textAlign: 'center'
     },
     space: {
         width: 10, // or whatever size you need
