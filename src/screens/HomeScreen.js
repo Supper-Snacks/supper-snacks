@@ -39,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
                         setUserGroup(snap.data())
                       };
         getUserGroup();
-        const orderQuery = query(collection(db, 'Group Orders'));
+        const orderQuery = query(collection(db, 'Group Orders'), where("group", "==", userGroup.group));
         const subscriber = onSnapshot(orderQuery, (snapshot) => {
             const tasks = [];
 
